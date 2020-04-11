@@ -20,7 +20,23 @@ if (config.server.env === 'development') {
 }
 
 app.get('*', function(req, res, next) {
-    res.send('Hello world since express');
+    res.send(`
+        <!DOCTYPE html>
+        <html lang="es">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" />
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+            <title>FrcGustavo</title>
+        </head>
+        <body>
+            <div id="app"></div>
+            <script src="assets/app.js"></script>
+        </body>
+        </html>
+    `);
 });
 
 app.listen(config.server.port, () => {
