@@ -1,6 +1,10 @@
 import express from 'express';
 import webpack from 'webpack';
-
+import React from 'react';
+import { renderRoutes } from 'react-router-config';
+import { renderToString } from 'react-dom/server';
+import { StaticRouter } from 'react-router-dom';
+import serverRoutes from '../frontend/routes/serverRoutes';
 import config from './config';
 
 const app = express();
@@ -19,8 +23,8 @@ if (config.server.env === 'development') {
     app.use(webpackHotMiddleware(compiler));
 }
 
-app.get('*', function(req, res, next) {
-    res.send(`
+const setRsponse = (html) => {
+    return (`
         <!DOCTYPE html>
         <html lang="es">
         <head>
@@ -32,12 +36,24 @@ app.get('*', function(req, res, next) {
             <title>FrcGustavo</title>
         </head>
         <body>
-            <div id="app"></div>
+            <div id="app">${html}</div>
             <script src="assets/app.js"></script>
         </body>
         </html>
     `);
-});
+}
+
+const renderApp = (req, res) => {
+    const html = renderToString( 
+        <StaticRouter location={req.url} context={{}}> 
+            { renderRoutes(serverRoutes) } 
+        </StaticRouter>
+    )
+
+    res.send(setRsponse(html));
+}
+
+app.get('*', renderApp);
 
 app.listen(config.server.port, () => {
     console.log(`Server is listening on http://localhost:${config.server.port}`);
