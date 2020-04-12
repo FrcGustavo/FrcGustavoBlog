@@ -1,0 +1,35 @@
+{
+    "name": "api-blog",
+    "version": "1.0.0",
+    "description": "This is the api for my blog",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "dev": "nodemon index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/FranciscoGustavo/FrcGustavo.git"
+    },
+    "keywords": [
+        "api",
+        "rest",
+        "blog"
+    ],
+    "author": "Francisco Gustavo <hidalgofco520@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/FranciscoGustavo/FrcGustavo/issues"
+    },
+    "homepage": "https://github.com/FranciscoGustavo/FrcGustavo#readme",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "mongoose": "^5.9.7",
+        "morgan": "^1.10.0"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.3"
+    }
+}
