@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import Header from './Header';
 
 const Layout = ({ children }) => (
   <>
-    <header>Cabecera</header>
+    <Header />
     <main>
       {children}
     </main>
