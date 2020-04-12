@@ -9,5 +9,5 @@ app.use(cors('*'));
 app.use(morgan('dev'));
 
 app.listen(config.srv.port, () => {
-    console.log(`Server is runing on http://localhost:${config.srv.port}`);
+  console.log(`Server is runing on http://localhost:${config.srv.port}`);
 });
