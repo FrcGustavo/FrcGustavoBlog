@@ -3,9 +3,12 @@ const cors = require('cors');
 const morgan = require('morgan');
 const config = require('./config');
 
+const connectMongo = require('./dbs/mongo');
+
 const postRotes = require('./routes/posts');
 
 const app = exprees();
+connectMongo();
 
 app.use(cors('*'));
 app.use(morgan('dev'));
