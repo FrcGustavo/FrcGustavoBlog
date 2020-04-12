@@ -1,0 +1,33 @@
+.card-principle {
+    background-color: rgba(0, 0, 0, 0.1);
+    .card-info {
+        padding: $font-size $font-size * 2;
+        h1,
+        p {
+            margin-bottom: $font-size;
+        }
+        h1 {
+            font-size: $font-size * 2;
+        }
+    }
+}
+
+.gird-cards {
+    padding: $font-size * 2;
+}
+
+.card-post {
+    @include shadow;
+    border-radius: $font-size;
+    overflow: hidden;
+    .card-info {
+        padding: $font-size;
+        h1,
+        p {
+            margin-bottom: $font-size;
+        }
+        h1 {
+            font-size: $font-size * 2;
+        }
+    }
+}
