@@ -1,8 +1,11 @@
+const Post = require('../services/PostsService');
+
 async function index(req, res, next) {
   try {
-    res.json({
-      message: 'all successfuly',
-      data: {},
+    const posts = await Post.findAll();
+    res.status(200).json({
+      message: 'list of posts',
+      data: posts,
     });
   } catch (error) {
     next(error);
@@ -10,10 +13,12 @@ async function index(req, res, next) {
 }
 
 async function create(req, res, next) {
+  const post = req.body;
   try {
-    res.json({
-      message: 'all successfuly',
-      data: {},
+    const createdPost = Post.create(post)
+    res.status(201).json({
+      message: 'post created',
+      data: createdPost,
     });
   } catch (error) {
     next(error);
@@ -21,10 +26,12 @@ async function create(req, res, next) {
 }
 
 async function show(req, res, next) {
+  const slug = req.params.slug;
   try {
-    res.json({
-      message: 'all successfuly',
-      data: {},
+    const post = await Post.findBySlug(slug);
+    res.status(200).json({
+      message: 'post ready',
+      data: post,
     });
   } catch (error) {
     next(error);
@@ -32,10 +39,13 @@ async function show(req, res, next) {
 }
 
 async function update(req, res, next) {
+  const post = req.body;
+  const slug = req.params.slug;
   try {
+    const updatedPost = await Post.update(slug, post);
     res.json({
-      message: 'all successfuly',
-      data: {},
+      message: 'post updated',
+      data: updatedPost,
     });
   } catch (error) {
     next(error);
@@ -43,10 +53,12 @@ async function update(req, res, next) {
 }
 
 async function destroy(req, res, next) {
+  const slug = req.params.slug;
   try {
+    const deletedPost = await Post.destroy(slug);
     res.json({
-      message: 'all successfuly',
-      data: {},
+      message: 'post deleted',
+      data: deletedPost,
     });
   } catch (error) {
     next(error);
