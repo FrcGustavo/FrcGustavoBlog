@@ -1,3 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable no-console */
+/* eslint-disable global-require */
 import express from 'express';
 import webpack from 'webpack';
 import React from 'react';
@@ -10,21 +14,20 @@ import config from './config';
 const app = express();
 
 if (config.server.env === 'development') {
-    console.log('Load development config');
-    const webpackConfig = require('../../webpack.config');
-    const webpackDevMiddleware = require('webpack-dev-middleware');
-    const webpackHotMiddleware = require('webpack-hot-middleware');
-    const compiler = webpack(webpackConfig);
-    const webpackServerConfig = {
-        port: config.server.port,
-        hot: true
-    }
-    app.use(webpackDevMiddleware(compiler, webpackServerConfig));
-    app.use(webpackHotMiddleware(compiler));
+  console.log('Load development config');
+  const webpackConfig = require('../../webpack.config');
+  const webpackDevMiddleware = require('webpack-dev-middleware');
+  const webpackHotMiddleware = require('webpack-hot-middleware');
+  const compiler = webpack(webpackConfig);
+  const webpackServerConfig = {
+    port: config.server.port,
+    hot: true,
+  };
+  app.use(webpackDevMiddleware(compiler, webpackServerConfig));
+  app.use(webpackHotMiddleware(compiler));
 }
 
-const setRsponse = (html) => {
-    return (`
+const setRsponse = (html) => (`
         <!DOCTYPE html>
         <html lang="es">
         <head>
@@ -42,23 +45,20 @@ const setRsponse = (html) => {
         </body>
         </html>
     `);
-}
 
 const renderApp = (req, res) => {
-    const html = renderToString( <
-        StaticRouter location = { req.url }
-        context = {
-            {}
-        } > { renderRoutes(serverRoutes) } <
-        /StaticRouter>
-    )
-    console.log(html);
+  const html = renderToString(
+    <StaticRouter location={req.url} context={{}}>
+      { renderRoutes(serverRoutes) }
+    </StaticRouter>,
+  );
+  console.log(html);
 
-    res.send(setRsponse(html));
-}
+  res.send(setRsponse(html));
+};
 
 app.get('*', renderApp);
 
 app.listen(config.server.port, () => {
-    console.log(`Server is listening on http://localhost:${config.server.port}`);
+  console.log(`Server is listening on http://localhost:${config.server.port}`);
 });

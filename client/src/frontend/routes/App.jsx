@@ -7,17 +7,15 @@ import Home from '../pages/Home';
 
 import '../assets/styles/main.scss';
 
-const App = () => {
-  return (
-    <BrowserRouter>
-      <Layout>
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/blog' component={Blog} />
-        </Switch>
-      </Layout>
-    </BrowserRouter>
-  )
-}
+const App = () => (
+  <BrowserRouter>
+    <Layout>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/blog" component={Blog} />
+      </Switch>
+    </Layout>
+  </BrowserRouter>
+);
 
 export default App;

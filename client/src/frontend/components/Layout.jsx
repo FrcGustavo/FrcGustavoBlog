@@ -1,4 +1,5 @@
-import React, { Children } from 'react';
+/* eslint-disable react/prop-types */
+import React from 'react';
 
 const Layout = ({ children }) => (
   <>
@@ -7,6 +8,6 @@ const Layout = ({ children }) => (
       {children}
     </main>
   </>
-)
+);
 
 export default Layout;

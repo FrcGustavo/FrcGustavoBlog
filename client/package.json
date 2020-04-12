@@ -6,7 +6,8 @@
     "scripts": {
         "build": "webpack-cli --config webpack.config.js",
         "start": "webpack-dev-server --open --mode development",
-        "start:dev": "nodemon src/server/index"
+        "start:dev": "nodemon src/server/index",
+        "lint": "eslint --ext .jsx --ext .js src/"
     },
     "repository": {
         "type": "git",
@@ -25,6 +26,7 @@
     "homepage": "https://github.com/FranciscoGustavo/FrcGustavo#readme",
     "dependencies": {
         "@babel/register": "^7.9.0",
+        "asset-require-hook": "^1.2.0",
         "dotenv": "^8.2.0",
         "express": "^4.17.1",
         "history": "^4.10.1",
