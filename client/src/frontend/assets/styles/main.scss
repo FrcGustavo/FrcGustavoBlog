@@ -1,19 +1,6 @@
-* {
-    border: 0;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-}
-
-body {
-    overflow: hidden;
-}
-
-#app {
-    width: 100vw;
-    height: 100vh;
-    overflow-y: auto;
-    background-color: yellow;
-}
+$font-size: 14px;
+$primary-gradient: #1C2237;
+$secondary-gradient: #4B5A8A;
+$secondary-dark: #C63F17;
+@import './App.scss';
+@import './pages/Home.scss';

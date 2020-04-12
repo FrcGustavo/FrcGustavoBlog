@@ -1,0 +1,38 @@
+* {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    font-size: $font-size;
+}
+
+body {
+    overflow: hidden;
+}
+
+img {
+    width: 100%;
+}
+
+#app {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: yellow;
+}
+
+@mixin shadow {
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.16);
+}
+
+.btn {
+    @include shadow;
+    border-radius: $font-size / 2;
+    padding: $font-size / 2 $font-size;
+    text-transform: uppercase;
+    &-primary {
+        background-color: $secondary-dark;
+        color: white;
+    }
+}
