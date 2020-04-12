@@ -8,6 +8,7 @@ import React from 'react';
 import { renderRoutes } from 'react-router-config';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
+import Layout from '../frontend/components/Layout';
 import serverRoutes from '../frontend/routes/serverRoutes';
 import config from './config';
 
@@ -49,11 +50,11 @@ const setRsponse = (html) => (`
 const renderApp = (req, res) => {
   const html = renderToString(
     <StaticRouter location={req.url} context={{}}>
-      { renderRoutes(serverRoutes) }
+      <Layout>
+        { renderRoutes(serverRoutes) }
+      </Layout>
     </StaticRouter>,
   );
-  console.log(html);
-
   res.send(setRsponse(html));
 };
 

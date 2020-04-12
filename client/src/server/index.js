@@ -4,7 +4,7 @@ require('@babel/register')({
   plugins: ['@babel/plugin-transform-runtime'],
 });
 require('asset-require-hook')({
-  extensions: ['jpg', 'png', 'gif'],
+  extensions: ['png', 'gif', 'jpg', 'svg'],
   name: 'assets/[hash].[ext]',
 });
 require('./server');
