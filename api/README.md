@@ -2,14 +2,22 @@
 
 This is the API for my blog
 
-## Config the enviroment variable
-
+## Config the enviroment variables
 Before the start, your must config enviroment variables
 
 #### Intructions:
 - Copy the file '.env.example'
 - Change the name '.env.example' to '.env'
 - open file and complete the variables
+
+Example
+```
+  PORT=8080
+  DB_USER=user
+  DB_PASSWORD=password
+  DB_HOST=localhost
+  DB_NAME=blog
+```
 
 ## Start
 
