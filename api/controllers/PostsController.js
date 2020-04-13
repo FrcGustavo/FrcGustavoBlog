@@ -26,7 +26,7 @@ async function create(req, res, next) {
 }
 
 async function show(req, res, next) {
-  const slug = req.params.slug;
+  const { slug } = req.params;
   try {
     const post = await Post.findBySlug(slug);
     res.status(200).json({
@@ -40,7 +40,7 @@ async function show(req, res, next) {
 
 async function update(req, res, next) {
   const post = req.body;
-  const slug = req.params.slug;
+  const { slug } = req.params;
   try {
     const updatedPost = await Post.update(slug, post);
     res.json({
@@ -53,7 +53,7 @@ async function update(req, res, next) {
 }
 
 async function destroy(req, res, next) {
-  const slug = req.params.slug;
+  const { slug } = req.params;
   try {
     const deletedPost = await Post.destroy(slug);
     res.json({

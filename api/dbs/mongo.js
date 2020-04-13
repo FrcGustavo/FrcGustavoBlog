@@ -12,6 +12,6 @@ const connectMongo = async () => {
   } catch (error) {
     return process.exit(1);
   }
-}
+};
 
 module.exports = connectMongo;

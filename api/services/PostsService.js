@@ -30,5 +30,5 @@ module.exports = {
   create,
   findBySlug,
   update,
-  destroy
-}
+  destroy,
+};

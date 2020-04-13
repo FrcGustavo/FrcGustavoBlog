@@ -6,6 +6,7 @@ const config = require('./config');
 const connectMongo = require('./dbs/mongo');
 
 const postRotes = require('./routes/posts');
+const AdminRoutes = require('./routes/AdminRoutes');
 
 const app = exprees();
 connectMongo();
@@ -16,7 +17,8 @@ app.use(cors('*'));
 app.use(morgan('dev'));
 
 postRotes(app);
+AdminRoutes(app);
 
 app.listen(config.srv.port, () => {
-    console.log(`Server is runing on http://localhost:${config.srv.port}`);
+  console.log(`Server is runing on http://localhost:${config.srv.port}`);
 });
