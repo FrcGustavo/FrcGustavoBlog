@@ -1,25 +1,27 @@
+const Post = require('../models/PostModel');
+
 async function findAll(query) {
-  const posts = {};
+  const posts = await Post.find();
   return posts;
 }
 
 async function create(post) {
-  const createdPost = {};
+  const createdPost = await Post.create(post);
   return createdPost;
 }
 
 async function findBySlug(slug) {
-  const post = {};
+  const post = Post.findOne({ slug });
   return post;
 }
 
-async function update(idPost, post) {
-  const updatedPost = {};
+async function update(slug, post) {
+  const updatedPost = await Post.updateOne({ slug }, post);
   return updatedPost;
 }
 
-async function destroy(idPost) {
-  const deletedPost = {};
+async function destroy(slug) {
+  const deletedPost = await Post.deleteOne({ slug });
   return deletedPost;
 }
 

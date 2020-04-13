@@ -10,11 +10,13 @@ const postRotes = require('./routes/posts');
 const app = exprees();
 connectMongo();
 
+app.use(exprees.urlencoded({ extended: true }));
+app.use(exprees.json());
 app.use(cors('*'));
 app.use(morgan('dev'));
 
 postRotes(app);
 
 app.listen(config.srv.port, () => {
-  console.log(`Server is runing on http://localhost:${config.srv.port}`);
+    console.log(`Server is runing on http://localhost:${config.srv.port}`);
 });

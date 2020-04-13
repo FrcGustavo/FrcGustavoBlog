@@ -15,7 +15,7 @@ async function index(req, res, next) {
 async function create(req, res, next) {
   const post = req.body;
   try {
-    const createdPost = Post.create(post)
+    const createdPost = await Post.create(post);
     res.status(201).json({
       message: 'post created',
       data: createdPost,
