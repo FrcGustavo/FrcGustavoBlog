@@ -10,8 +10,7 @@ const CardPost = ({ post }) => (
       <Link className="btn btn-primary" to={`/${post.slug}`}>Leer más</Link>
     </div>
   </article>
-)
-
+);
 
 
 export default CardPost;
