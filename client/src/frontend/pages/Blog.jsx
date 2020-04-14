@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CardPost from '../components/CardPost';
+
 const post = 'https://firebasestorage.googleapis.com/v0/b/frcgustavo-849f3.appspot.com/o/post.png?alt=media&token=01feb409-2585-4ffd-a9d1-11d84524f96d';
 
 const Blog = () => {
   const [posts, setPosts] = useState(false);
   useEffect(() => {
-    if(!posts) {
+    if (!posts) {
       fetch('http://localhost:8080/api/posts/')
-        .then(res => res.json())
-        .then(json => setPosts(json.data))
+        .then((res) => res.json())
+        .then((json) => setPosts(json.data));
     }
     console.log(posts);
-  })
+  });
   console.log(posts);
-  if(!posts) return <div>Cargando</div>;
+  if (!posts) return <div>Cargando</div>;
   return (
     <div className="blog">
       <div className="card-principle">
@@ -30,7 +31,7 @@ const Blog = () => {
       <section className="gird-cards">
         <div className="container">
           {
-            posts.map((post, idx) => (<CardPost key={idx} post={post}/>))
+            posts.map((post, idx) => (<CardPost key={idx} post={post} />))
           }
         </div>
       </section>

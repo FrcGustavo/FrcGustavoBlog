@@ -25,7 +25,7 @@ const Home = () => (
     </section>
     <section className="home-post">
       <article className="card-main-post">
-        <img src="" alt="" />
+        <img src="https://firebasestorage.googleapis.com/v0/b/frcgustavo-849f3.appspot.com/o/post.png?alt=media&token=01feb409-2585-4ffd-a9d1-11d84524f96d" alt="" />
         <div className="card-post-info">
           <h3>Titulo del post</h3>
           <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam error ullam qui? Magnam, ipsa eos voluptates rem omnis quam ut incidunt exercitationem inventore, minima dolore soluta. Vel iste necessitatibus recusandae.</p>

@@ -1,5 +1,8 @@
 .card-principle {
     background-color: rgba(0, 0, 0, 0.1);
+    img {
+        max-width: 500px;
+    }
     .card-info {
         padding: $font-size $font-size * 2;
         h1,
@@ -31,7 +34,35 @@
             margin-bottom: $font-size;
         }
         h1 {
-            font-size: $font-size * 2;
+            font-size: $font-size * 1.5;
+        }
+    }
+}
+
+@media screen and (min-width: 680px) {
+    .card-principle {
+        padding: $font-size * 4 0;
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: $font-size * 2;
+        }
+    }
+    .gird-cards {
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: $font-size * 2;
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .gird-cards {
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: $font-size * 2;
         }
     }
 }

@@ -34,6 +34,9 @@
     border-radius: $font-size / 2;
     padding: $font-size * 2;
     background-color: white;
+    img {
+        display: none;
+    }
     .card-post-info {
         h3,
         p {
@@ -54,5 +57,13 @@
     margin-bottom: $font-size;
     svg {
         width: $font-size * 2;
+    }
+}
+
+@media screen and (min-width: 680px) {
+    .card-main-post {
+        img {
+            display: block;
+        }
     }
 }
