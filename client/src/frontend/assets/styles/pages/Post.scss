@@ -1,0 +1,29 @@
+.post {
+    .post-title,
+    .post-conent {
+        padding: $font-size / 2 $font-size * 2;
+    }
+    .post-header {}
+    .post-title {
+        border-bottom: solid 1px rgba(#000, 0.5);
+        h1 {
+            font-size: $font-size * 2;
+        }
+    }
+}
+
+.subtitle {
+    &-1 {
+        font-size: $font-size * 1.5;
+        padding: $font-size 0;
+    }
+    &-2 {
+        font-size: $font-size * 1.25;
+        padding: $font-size 0;
+    }
+}
+
+.pharagraph {
+    font-size: $font-size;
+    padding: $font-size 0;
+}

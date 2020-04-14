@@ -5,8 +5,7 @@ import GithubIcon from '../components/icons/GithubIcon';
 import TwitterIcon from '../components/icons/TwitterIcon';
 import LinkedinIcon from '../components/icons/LinkedinIcon';
 
-import frcgustavo from '../assets/img/frcgustavo.jpg';
-
+const frcgustavo = 'https://firebasestorage.googleapis.com/v0/b/frcgustavo-849f3.appspot.com/o/frcgustavo.jpg?alt=media&token=2cb8e891-4281-47bd-9673-86ad56812204';
 const Home = () => (
   <div className="home">
     <section className="home-info">
