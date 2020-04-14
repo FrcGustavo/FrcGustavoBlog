@@ -4,7 +4,7 @@ async function create(req, res, next) {
   const admin = req.body;
   try {
     const createdAdmin = await Admin.create(admin);
-    res.status(200).json({
+    res.status(201).json({
       message: 'admin created',
       data: createdAdmin,
     });
