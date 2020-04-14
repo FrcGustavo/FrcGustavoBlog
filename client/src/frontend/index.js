@@ -8,7 +8,7 @@ import App from './routes/App';
 
 const history = createBrowserHistory();
 
-ReactDOM.hydrate(
+ReactDOM.render(
   <Router history={history}>
     <App />
   </Router>,
