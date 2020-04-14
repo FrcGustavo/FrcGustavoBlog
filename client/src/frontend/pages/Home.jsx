@@ -8,7 +8,7 @@ import LinkedinIcon from '../components/icons/LinkedinIcon';
 const frcgustavo = 'https://firebasestorage.googleapis.com/v0/b/frcgustavo-849f3.appspot.com/o/frcgustavo.jpg?alt=media&token=2cb8e891-4281-47bd-9673-86ad56812204';
 const Home = () => (
   <div className="home">
-    <section className="home-info">
+    <section className="home-info container">
       <div className="home-img">
         <img src={frcgustavo} alt="FrcGustavo" />
       </div>
@@ -24,7 +24,7 @@ const Home = () => (
       </div>
     </section>
     <section className="home-post">
-      <article className="card-main-post">
+      <article className="card-main-post container">
         <img src="https://firebasestorage.googleapis.com/v0/b/frcgustavo-849f3.appspot.com/o/post.png?alt=media&token=01feb409-2585-4ffd-a9d1-11d84524f96d" alt="" />
         <div className="card-post-info">
           <h3>Titulo del post</h3>
