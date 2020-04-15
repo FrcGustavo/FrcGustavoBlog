@@ -26,7 +26,7 @@ async function findBySlug(slug) {
 }
 
 async function update(slug, post) {
-  return {};
+  if (slug && post) return PostsMock[0];
 }
 
 async function destroy(slug) {

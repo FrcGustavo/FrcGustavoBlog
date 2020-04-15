@@ -65,12 +65,27 @@ describe('routes - posts', () => {
     });
   });
 
-  /* describe('PATCH /posts/:id', () => {
-        it('should response with status code 200', (done) => {
-            request.delete(`/api/posts/${PostsMock[0].slug}`).expect(200, done);
-        })
+  describe('PATCH /posts/:id', () => {
+    it('should response with status code 200', (done) => {
+      request.patch(`/api/posts/${PostsMock[0].slug}`)
+        .set('Content-Type', 'appication/json')
+        .send(PostsMock[0])
+        .expect(200, done);
     });
-*/
+    it('should response with a post updated', (done) => {
+      request.patch(`/api/posts/${PostsMock[0].slug}`)
+        .set('Content-Type', 'appication/json')
+        .send(PostsMock[0])
+        .end((err, res) => {
+          assert.deepEqual(res.body, {
+            message: 'post updated',
+            data: PostsMock[0],
+          });
+          done();
+        });
+    });
+  });
+
   describe('DELETE /posts/:id', () => {
     it('should response with status code 200', (done) => {
       request.delete(`/api/posts/${PostsMock[0].slug}`).expect(200, done);

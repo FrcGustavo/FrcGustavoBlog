@@ -7,20 +7,19 @@ const AdminMock = [{
   email: 'gus@mail.com',
   password: 'my-password',
   createdAt: '2020-04-14T01:16:08.276+00:00',
-  updatedAt: '2020-04-14T01:16:08.276+00:00'
+  updatedAt: '2020-04-14T01:16:08.276+00:00',
 }];
 
 async function create(admin) {
-  if(admin) return AdminMock[0];
-
+  if (admin) return AdminMock[0];
 }
 
 async function update(admin, adminId) {
-  if(admin && adminId) return AdminMock[0];
+  if (admin && adminId) return AdminMock[0];
 }
 
 async function findById(adminId) {
-  if(adminId) return AdminMock[0]
+  if (adminId) return AdminMock[0];
 }
 
 module.exports = {
@@ -29,5 +28,5 @@ module.exports = {
     create,
     update,
     findById,
-  }
-}
+  },
+};
