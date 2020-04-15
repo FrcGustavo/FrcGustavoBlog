@@ -31,6 +31,12 @@ Run development mode
 npm run dev
 ```
 
+Run test and coverage
+```bash
+npm run test
+npm run cover
+```
+
 Run production mode
 ```bash
 npm start
