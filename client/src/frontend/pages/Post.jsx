@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { api } from '../config';
+
 const html = '<h2 className="subtitle-1">Subtituo 1</h2>\n<h3 className="subtitle-2">Subtitulo 2</h3>\n<p className="pharagraph">Parrafo de texto</p\n';
-const Post = (props) => {  
+const Post = (props) => {
   const [post, setPost] = useState(false);
   useEffect(() => {
-    if(!post) {      
+    if (!post) {
       fetch(`${api}/posts/${props.match.params.slug}`)
-      .then(res => res.json())
-      .then(json => setPost(json.data));
+        .then((res) => res.json())
+        .then((json) => setPost(json.data));
     }
   });
-  if(!post) return <div>Cargando</div>;
+  if (!post) return <div>Cargando</div>;
   const content = post.post.split('\n');
   console.log();
   return (
@@ -22,14 +23,7 @@ const Post = (props) => {
         <section className="post-title">
           <h1>{post.title}</h1>
         </section>
-        <section className="post-conent">
-          {
-            post.post
-          }
-          <h2 className="subtitle-1">Subtituo 1</h2>
-          <h3 className="subtitle-2">Subtitulo 2</h3>
-          <p className="pharagraph">Parrafo de texto</p>
-        </section>
+        <section className="post-conent" dangerouslySetInnerHTML={{ __html: post.post }} />
       </div>
     </div>
   );

@@ -1,5 +1,8 @@
+const showdown = require('showdown');
 const Post = require('../models/PostModel');
 const slugify = require('../utils/plugins/slugify');
+
+converter = new showdown.Converter();
 
 async function findAll(query) {
   const posts = await Post.find().limit(9).sort('-_id');
@@ -39,7 +42,8 @@ async function create(data) {
 }
 
 async function findBySlug(slug) {
-  const post = Post.findOne({ slug });
+  const post = await Post.findOne({ slug });
+  post.post = converter.makeHtml(post.post);
   return post;
 }
 

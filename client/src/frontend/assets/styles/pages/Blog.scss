@@ -49,10 +49,11 @@
         }
     }
     .gird-cards {
+        padding: $font-size * 4;
         .container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: $font-size * 2;
+            gap: $font-size * 4;
         }
     }
 }
@@ -60,9 +61,7 @@
 @media screen and (min-width: 1200px) {
     .gird-cards {
         .container {
-            display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: $font-size * 2;
         }
     }
 }
