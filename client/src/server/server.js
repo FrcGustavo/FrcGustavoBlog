@@ -4,6 +4,7 @@
 /* eslint-disable global-require */
 import express from 'express';
 import webpack from 'webpack';
+import helmet from 'helmet';
 import React from 'react';
 import { renderRoutes } from 'react-router-config';
 import { renderToString } from 'react-dom/server';
@@ -26,6 +27,11 @@ if (config.server.env === 'development') {
   };
   app.use(webpackDevMiddleware(compiler, webpackServerConfig));
   app.use(webpackHotMiddleware(compiler));
+} else {
+  app.use(express.static(`${__dirname}/public`));
+  app.use(helmet());
+  app.use(helmet.permittedCrossDomainPolicies());
+  app.disable('x-powered-by');
 }
 
 const setRsponse = (html) => (`
