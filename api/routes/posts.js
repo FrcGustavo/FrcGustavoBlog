@@ -1,5 +1,6 @@
 const express = require('express');
 const controller = require('../controllers/PostsController');
+const authenticateJwt = require('../utils/middlewares/authenticateJwt');
 
 const postRoutes = (app) => {
   const router = express.Router();
@@ -7,11 +8,11 @@ const postRoutes = (app) => {
 
   router.route('/')
     .get(controller.index)
-    .post(controller.create);
+    .post(authenticateJwt, controller.create);
   router.route('/:slug')
     .get(controller.show)
-    .patch(controller.update)
-    .delete(controller.destroy);
+    .patch(authenticateJwt, controller.update)
+    .delete(authenticateJwt, controller.destroy);
 };
 
 module.exports = postRoutes;

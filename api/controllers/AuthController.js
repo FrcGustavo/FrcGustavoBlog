@@ -7,9 +7,9 @@ async function signIn(req, res, next) {
   const { email, password } = req.body;
   try {
     const admin = await AdminService.findByEmail(email);
-    if(!admin) throw 'Error email dont exist'
-    if(!await bcrypt.compare(password, admin.password)) {
-      throw 'Error'
+    if (!admin) throw 'Error email dont exist';
+    if (!await bcrypt.compare(password, admin.password)) {
+      throw 'Error';
     }
     delete admin.password;
     const payload = {
@@ -18,12 +18,12 @@ async function signIn(req, res, next) {
       username: admin.username,
     };
     const token = jwt.sign(payload, config.authJwtSecret, {
-      expiresIn: '59min'
+      expiresIn: '59min',
     });
     res.status(200).json({
       message: 'user sign in',
       token,
-      admin
+      admin,
     });
   } catch (error) {
     next(error);
@@ -31,5 +31,5 @@ async function signIn(req, res, next) {
 }
 
 module.exports = {
-  signIn
-}
+  signIn,
+};

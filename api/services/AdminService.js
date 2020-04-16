@@ -71,5 +71,5 @@ module.exports = {
   create,
   update,
   findById,
-  findByEmail
+  findByEmail,
 };
