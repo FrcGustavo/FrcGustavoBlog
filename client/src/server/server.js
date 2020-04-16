@@ -11,6 +11,7 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import Layout from '../frontend/components/Layout';
 import serverRoutes from '../frontend/routes/serverRoutes';
+import getManifest from './getManifest';
 import config from './config';
 
 const app = express();
@@ -28,30 +29,40 @@ if (config.server.env === 'development') {
   app.use(webpackDevMiddleware(compiler, webpackServerConfig));
   app.use(webpackHotMiddleware(compiler));
 } else {
+  app.use((req, res, next) => {
+    if (!req.hashManifest) {
+      req.hashManifest = getManifest();
+    }
+    next();
+  });
   app.use(express.static(`${__dirname}/public`));
   app.use(helmet());
   app.use(helmet.permittedCrossDomainPolicies());
   app.disable('x-powered-by');
 }
 
-const setRsponse = (html) => (`
-        <!DOCTYPE html>
-        <html lang="es">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <link rel="stylesheet" type="text/css" href="assets/app.css"/>
-            <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" />
-            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-            <title>FrcGustavo</title>
-        </head>
-        <body>
-            <div id="app">${html}</div>
-            <script src="assets/app.js"></script>
-        </body>
-        </html>
-    `);
+const setResponse = (html, manifest) => {
+  const mainStyles = manifest ? manifest['main.css'] : 'assets/app.css';
+  const mainBuild = manifest ? manifest['main.js'] : 'assets/app.js';
+  return (`
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" type="text/css" href="${mainStyles}"/>
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <title>FrcGustavo</title>
+    </head>
+    <body>
+        <div id="app">${html}</div>
+        <script src="${mainBuild}"></script>
+    </body>
+    </html>
+  `);
+};
 
 const renderApp = (req, res) => {
   const html = renderToString(
@@ -61,7 +72,7 @@ const renderApp = (req, res) => {
       </Layout>
     </StaticRouter>,
   );
-  res.send(setRsponse(html));
+  res.send(setResponse(html, req.hashManifest));
 };
 
 app.get('*', renderApp);
