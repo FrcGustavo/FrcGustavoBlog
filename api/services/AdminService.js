@@ -51,6 +51,10 @@ async function findById(adminId) {
   return admin;
 }
 
+async function findByEmail(email) {
+  return await Admin.findOne({ email });
+}
+
 async function isRegisteredEmail(email) {
   const user = await Admin.findOne({ email });
   if (user) return true;
@@ -67,4 +71,5 @@ module.exports = {
   create,
   update,
   findById,
+  findByEmail
 };
