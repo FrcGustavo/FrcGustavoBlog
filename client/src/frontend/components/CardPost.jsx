@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const CardPost = ({ post }) => (
@@ -12,5 +13,8 @@ const CardPost = ({ post }) => (
   </article>
 );
 
+CardPost.propTypes = {
+  post: PropTypes.objectOf.isRequired,
+};
 
 export default CardPost;

@@ -1,1 +1,4 @@
-export const api = 'http://localhost:8080/api';
+const config = {
+  api: 'http://localhost:8080/api',
+};
+export default config;

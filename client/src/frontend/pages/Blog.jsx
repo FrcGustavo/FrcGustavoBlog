@@ -14,24 +14,24 @@ const Blog = () => {
   });
 
   if (!posts) return <div>Cargando</div>;
-  const post = posts.shift();
+  const firstPost = posts.shift();
   return (
     <>
       <div className="blog">
         <div className="card-principle">
           <div className="container">
-            <img src={post.cover} alt="" />
+            <img src={firstPost.cover} alt="" />
             <div className="card-info">
-              <h1>{post.title}</h1>
-              <p>{post.description}</p>
-              <Link className="btn btn-primary" to={post.slug}>Leer más</Link>
+              <h1>{firstPost.title}</h1>
+              <p>{firstPost.description}</p>
+              <Link className="btn btn-primary" to={firstPost.slug}>Leer más</Link>
             </div>
           </div>
         </div>
         <section className="gird-cards">
           <div className="container">
             {
-              posts.map((post, idx) => (<CardPost key={idx} post={post} />))
+              posts.map((post) => (<CardPost key={post.title} post={post} />))
             }
           </div>
         </section>

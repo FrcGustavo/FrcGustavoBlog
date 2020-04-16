@@ -1,6 +1,10 @@
+/* eslint-disable react/no-danger */
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import Footer from '../components/Footer';
-import { api } from '../config';
+import config from '../config';
+
+const { api } = config;
 
 const Post = (props) => {
   const [post, setPost] = useState(false);
@@ -28,6 +32,10 @@ const Post = (props) => {
       <Footer />
     </>
   );
+};
+
+Post.propTypes = {
+  match: PropTypes.objectOf.isRequired,
 };
 
 export default Post;
