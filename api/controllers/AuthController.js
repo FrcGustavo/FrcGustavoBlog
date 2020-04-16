@@ -29,3 +29,7 @@ async function signIn(req, res, next) {
     next(error);
   }
 }
+
+module.exports = {
+  signIn
+}
