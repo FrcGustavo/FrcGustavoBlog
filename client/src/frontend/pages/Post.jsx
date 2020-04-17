@@ -35,7 +35,11 @@ const Post = (props) => {
 };
 
 Post.propTypes = {
-  match: PropTypes.objectOf.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      slug: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
 };
 
 export default Post;

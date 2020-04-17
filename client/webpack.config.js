@@ -28,22 +28,29 @@ module.exports = {
     minimizer: [new TerserPlugin()],
   },
   module: {
-    rules: [{
-      test: /\.(js|jsx)$/,
-      exclude: /node_modules/,
-      use: {
-        loader: 'babel-loader',
+    rules: [
+      {
+        enforce: 'pre',
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
       },
-    },
-    {
-      test: /\.(s*)css$/,
-      use: [{
-        loader: MiniCssExtractPlugin.loader,
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
       },
-      'css-loader',
-      'sass-loader',
-      ],
-    },
+      {
+        test: /\.(s*)css$/,
+        use: [{
+          loader: MiniCssExtractPlugin.loader,
+        },
+        'css-loader',
+        'sass-loader',
+        ],
+      },
     ],
   },
   devServer: {

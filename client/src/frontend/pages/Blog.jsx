@@ -14,7 +14,7 @@ const Blog = () => {
   });
 
   if (!posts) return <div>Cargando</div>;
-  const firstPost = posts.shift();
+  const firstPost = posts[0];
   return (
     <>
       <div className="blog">
@@ -31,7 +31,10 @@ const Blog = () => {
         <section className="gird-cards">
           <div className="container">
             {
-              posts.map((post) => (<CardPost key={post.title} post={post} />))
+              posts.map((post, idx) => {
+                if (idx === 0) return false;
+                return <CardPost key={post.slug} post={post} />;
+              })
             }
           </div>
         </section>
