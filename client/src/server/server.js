@@ -6,11 +6,15 @@ import express from 'express';
 import webpack from 'webpack';
 import helmet from 'helmet';
 import React from 'react';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 import { renderRoutes } from 'react-router-config';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import Layout from '../frontend/components/Layout';
 import serverRoutes from '../frontend/routes/serverRoutes';
+import reducer from '../frontend/reducers/index';
+import initialState from '../frontend/initialState';
 import getManifest from './getManifest';
 import config from './config';
 
@@ -41,7 +45,7 @@ if (config.server.env === 'development') {
   app.disable('x-powered-by');
 }
 
-const setResponse = (html, manifest) => {
+const setResponse = (html, preloadedState, manifest) => {
   const mainStyles = manifest ? manifest['main.css'] : 'assets/app.css';
   const mainBuild = manifest ? manifest['main.js'] : 'assets/app.js';
   return (`
@@ -58,6 +62,9 @@ const setResponse = (html, manifest) => {
     </head>
     <body>
         <div id="app">${html}</div>
+        <script>
+          window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState)/* .replace(/</g, '\\u003c') */}
+        </script>
         <script src="${mainBuild}"></script>
     </body>
     </html>
@@ -65,14 +72,18 @@ const setResponse = (html, manifest) => {
 };
 
 const renderApp = (req, res) => {
+  const store = createStore(reducer, initialState);
+  const preloadedState = store.getState();
   const html = renderToString(
-    <StaticRouter location={req.url} context={{}}>
-      <Layout>
-        { renderRoutes(serverRoutes) }
-      </Layout>
-    </StaticRouter>,
+    <Provider store={store}>
+      <StaticRouter location={req.url} context={{}}>
+        <Layout>
+          { renderRoutes(serverRoutes) }
+        </Layout>
+      </StaticRouter>
+    </Provider>,
   );
-  res.send(setResponse(html, req.hashManifest));
+  res.send(setResponse(html, preloadedState, req.hashManifest));
 };
 
 app.get('*', renderApp);
