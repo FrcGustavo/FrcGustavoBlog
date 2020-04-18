@@ -12,7 +12,7 @@ import serverRoutes from '../../frontend/routes/serverRoutes';
 
 import setResponse from './setResponse';
 
-const renderApp = (initialState, url, manifest) => {
+const renderApp = (initialState, url, manifest, metaTags) => {
   const store = createStore(reducer, initialState);
   const html = renderToString(
     <Provider store={store}>
@@ -24,7 +24,7 @@ const renderApp = (initialState, url, manifest) => {
     </Provider>,
   );
   const preloadedState = store.getState();
-  return setResponse(html, preloadedState, manifest);
+  return setResponse(html, preloadedState, manifest, metaTags);
 };
 
 export default renderApp;

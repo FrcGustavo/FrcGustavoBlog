@@ -1,4 +1,4 @@
-const setResponse = (html, state, manifest) => {
+const setResponse = (html, state, manifest, metaTags) => {
   const mainStyles = manifest ? manifest['main.css'] : 'assets/app.css';
   const mainBuild = manifest ? manifest['main.js'] : 'assets/app.js';
   return (`
@@ -6,12 +6,15 @@ const setResponse = (html, state, manifest) => {
     <html lang="es">
     <head>
         <meta charset="UTF-8">
+        <meta name="description" content="${metaTags.description || ''}">
+        <meta name="keywords" content="${metaTags.keywords || ''}">
+        <meta name="author" content="FrcGustavo">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" type="text/css" href="${mainStyles}"/>
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <title>FrcGustavo</title>
+        <title>${metaTags.title || 'FrcGustavo'}</title>
     </head>
     <body>
         <div id="app">${html}</div>

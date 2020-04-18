@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import express from 'express';
 
+import MainController from './controllers/MainController';
 import BlogController from './controllers/BlogController';
 
 import loadConfigDev from './utils/loadConfigDev';
@@ -16,9 +17,9 @@ if (config.server.env === 'development') {
   loadConfigProd(app);
 }
 
-// app.get('/',);
+app.get('/', MainController.index);
 app.get('/blog', BlogController.index);
-// app.get('/slug');
+app.get('/:slug', BlogController.show);
 
 app.listen(config.server.port, () => {
   console.log(`Server is listening on http://localhost:${config.server.port}`);
