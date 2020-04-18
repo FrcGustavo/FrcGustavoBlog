@@ -5,8 +5,19 @@ const slugify = require('../utils/plugins/slugify');
 converter = new showdown.Converter();
 
 async function findAll(query) {
-  const posts = await Post.find().limit(9).sort('-_id');
-  return posts;
+  const limit = Number(query.limit) || 10;
+  const sort = query.sort ? String(query.sort) : '-_id';
+  console.log(sort);
+
+  const posts = await Post.find().limit(limit).sort(sort);
+  return posts.map((currentPost) => {
+    const {
+      _id, title, description, cover, slug, post,
+    } = currentPost;
+    return {
+      _id, title, description, cover, slug, post,
+    };
+  });
 }
 
 async function create(data) {
@@ -43,6 +54,7 @@ async function create(data) {
 
 async function findBySlug(slug) {
   const post = await Post.findOne({ slug });
+  post.__v = undefined;
   post.post = converter.makeHtml(post.post);
   return post;
 }

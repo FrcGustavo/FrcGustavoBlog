@@ -1,8 +1,9 @@
 const Post = require('../services/PostsService');
 
 async function index(req, res, next) {
+  const { limit, sort } = req.query;
   try {
-    const posts = await Post.findAll();
+    const posts = await Post.findAll({ limit, sort });
     res.status(200).json({
       message: 'list of posts',
       data: posts,
