@@ -54,6 +54,9 @@ async function create(data) {
 
 async function findBySlug(slug) {
   const post = await Post.findOne({ slug });
+  if (!post) {
+    throw new Error('Not Found');
+  }
   post.__v = undefined;
   post.post = converter.makeHtml(post.post);
   return post;
