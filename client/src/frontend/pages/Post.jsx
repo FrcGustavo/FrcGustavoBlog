@@ -7,8 +7,8 @@ import config from '../config';
 
 const { api } = config;
 
-const Post = ({ posts, match }) => {
-  const [post, setPost] = useState(posts);
+const Post = ({ currentPost, match }) => {
+  const [post, setPost] = useState(currentPost);
   useEffect(() => {
     if (!post) {
       fetch(`${api}/posts/${match.params.slug}`)
@@ -41,11 +41,11 @@ Post.propTypes = {
       slug: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
-  posts: PropTypes.objectOf(PropTypes.string).isRequired,
+  currentPost: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  posts: state.post,
+  currentPost: state.currentPost,
 });
 
 export default connect(mapStateToProps, null)(Post);

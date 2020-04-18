@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Error = () => (
+const Error404 = () => (
   <div>This is a 404 error</div>
 );
 
-export default Error;
+export default Error404;

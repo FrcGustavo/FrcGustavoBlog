@@ -19,6 +19,7 @@ if (config.server.env === 'development') {
 
 app.get('/', MainController.index);
 app.get('/blog', BlogController.index);
+app.get('/not-found', MainController.Error404);
 app.get('/:slug', BlogController.show);
 
 app.listen(config.server.port, () => {
