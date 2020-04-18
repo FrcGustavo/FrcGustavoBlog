@@ -51,6 +51,10 @@ async function findById(adminId) {
   return admin;
 }
 
+async function count() {
+  return await Admin.countDocuments();
+}
+
 async function findByEmail(email) {
   return await Admin.findOne({ email });
 }
@@ -72,4 +76,5 @@ module.exports = {
   update,
   findById,
   findByEmail,
+  count,
 };

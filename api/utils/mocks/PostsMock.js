@@ -9,7 +9,7 @@ const PostsMock = [{
   updatedAt: '2020-04-14T21:03:27.505+00:00',
 }];
 
-async function findAll(query) {
+async function findAll() {
   return PostsMock;
 }
 
@@ -17,21 +17,27 @@ async function create(post) {
   if (post) {
     return PostsMock[0];
   }
+  return {};
 }
 
 async function findBySlug(slug) {
   if (slug) {
     return PostsMock[0];
   }
+  return {};
 }
 
 async function update(slug, post) {
   if (slug && post) return PostsMock[0];
+  return {};
 }
 
 async function destroy(slug) {
-  const postDeleted = PostsMock.find((post) => post.slug === slug);
-  return postDeleted;
+  if (slug) {
+    const postDeleted = PostsMock.find((post) => post.slug === slug);
+    return postDeleted;
+  }
+  return {};
 }
 
 module.exports = {

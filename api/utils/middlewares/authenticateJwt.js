@@ -5,7 +5,8 @@ const authenticateJwt = (req, res, next) => {
   try {
     const token = req.headers.authorization.split(' ').pop();
     const payload = jwt.verify(token, config.authJwtSecret);
-    console.log(payload);
+    req.payload = payload;
+    next();
   } catch (error) {
     next(error);
   }

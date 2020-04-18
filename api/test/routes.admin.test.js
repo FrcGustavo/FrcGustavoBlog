@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-underscore-dangle */
 const assert = require('assert');
 const proxyquire = require('proxyquire');
 const { AdminServiceMock, AdminMock } = require('../utils/mocks/AdminMock');

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const assert = require('assert');
 const proxyquire = require('proxyquire');
 const testServer = require('../utils/testServer');

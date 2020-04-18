@@ -12,14 +12,17 @@ const AdminMock = [{
 
 async function create(admin) {
   if (admin) return AdminMock[0];
+  return {};
 }
 
 async function update(admin, adminId) {
   if (admin && adminId) return AdminMock[0];
+  return {};
 }
 
 async function findById(adminId) {
   if (adminId) return AdminMock[0];
+  return {};
 }
 
 module.exports = {
