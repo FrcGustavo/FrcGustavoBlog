@@ -1,16 +1,17 @@
 /* eslint-disable react/no-danger */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Footer from '../components/Footer';
 import config from '../config';
 
 const { api } = config;
 
-const Post = (props) => {
-  const [post, setPost] = useState(false);
+const Post = ({ posts, match }) => {
+  const [post, setPost] = useState(posts);
   useEffect(() => {
     if (!post) {
-      fetch(`${api}/posts/${props.match.params.slug}`)
+      fetch(`${api}/posts/${match.params.slug}`)
         .then((res) => res.json())
         .then((json) => setPost(json.data));
     }
@@ -40,6 +41,11 @@ Post.propTypes = {
       slug: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
+  posts: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
-export default Post;
+const mapStateToProps = (state) => ({
+  posts: state.post,
+});
+
+export default connect(mapStateToProps, null)(Post);
